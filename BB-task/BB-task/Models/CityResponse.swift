@@ -15,7 +15,7 @@ struct Coordinate: Decodable {
     private
     enum CodingKeys: String, CodingKey {
         
-        case longitude = "long"
+        case longitude = "lon"
         case latitude = "lat"
     }
 }
