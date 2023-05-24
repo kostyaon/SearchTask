@@ -61,6 +61,8 @@ extension Requestable {
     }
 }
 
+
+// MARK: - Endpoint
 class Endpoint<T>: ResponseRequestable {
     
     typealias Response = T
