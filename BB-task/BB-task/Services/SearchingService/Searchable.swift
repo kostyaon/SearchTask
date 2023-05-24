@@ -11,5 +11,5 @@ protocol Searchable {
     
     associatedtype T: Collection
     
-    func searchFor(prefix: T) -> [T]
+    func searchFor(prefix: T) -> [Int]
 }

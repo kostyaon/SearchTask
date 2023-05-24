@@ -13,6 +13,7 @@ class TrieNode<Key: Hashable> {
     weak var parent: TrieNode?
     var children: [Key: TrieNode] = [:]
     
+    var nodeIDs: [Int] = []
     var isTerminating = false
     
     init(key: Key?, parent: TrieNode?) {

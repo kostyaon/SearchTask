@@ -15,7 +15,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
     
     init() {}
     
-    func insert(_ collection: CollectionType) {
+    func insert(_ collection: CollectionType, id: Int) {
         var current = root
         
         for element in collection {
@@ -26,6 +26,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
         }
         
         current.isTerminating = true
+        current.nodeIDs.append(id)
     }
     
     func contains(_ collection: CollectionType) -> Bool {
@@ -47,6 +48,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
         }
         guard current.isTerminating else { return }
         current.isTerminating = false
+        current.nodeIDs = []
         while let parent = current.parent, current.children.isEmpty && !current.isTerminating {
             parent.children[current.key!] = nil
             current = parent
@@ -57,7 +59,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
 // Prefix matching
 extension Trie where CollectionType: RangeReplaceableCollection {
     
-    func collections(startingWith prefix: CollectionType) -> [CollectionType] {
+    func collections(startingWith prefix: CollectionType) -> [Int] {
         var current = root
         for element in prefix {
             guard let child = current.children[element] else { return [] }
@@ -71,17 +73,17 @@ extension Trie where CollectionType: RangeReplaceableCollection {
 private
 extension Trie where CollectionType: RangeReplaceableCollection {
     
-    func collections(startingWith prefix: CollectionType, after node: Node) -> [CollectionType] {
-        var results: [CollectionType] = []
+    func collections(startingWith prefix: CollectionType, after node: Node) -> [Int] {
+        var results: [Int] = []
         
         if node.isTerminating {
-            results.append(prefix)
+            results += node.nodeIDs
         }
         
         for child in node.children.values {
             var prefix = prefix
             prefix.append(child.key!)
-            results.append(contentsOf: collections(startingWith: prefix, after: child))
+            results += collections(startingWith: prefix, after: child)
         }
         
         return results
