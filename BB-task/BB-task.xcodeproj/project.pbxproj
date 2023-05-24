@@ -18,6 +18,8 @@
 		8C259A912A1D0371003FC511 /* BB_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C259A902A1D0371003FC511 /* BB_taskUITests.swift */; };
 		8C259A932A1D0371003FC511 /* BB_taskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C259A922A1D0371003FC511 /* BB_taskUITestsLaunchTests.swift */; };
 		8C259AA12A1D06AC003FC511 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C259AA02A1D06AC003FC511 /* NetworkService.swift */; };
+		8C2684B92A1E3BF100572003 /* TrieNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684B82A1E3BF100572003 /* TrieNode.swift */; };
+		8C2684BB2A1E3C0C00572003 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684BA2A1E3C0C00572003 /* Trie.swift */; };
 		8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */; };
 		8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040402A1D0FF000709D7F /* APIEndpoints.swift */; };
 		8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040422A1D104A00709D7F /* Endpoint.swift */; };
@@ -60,6 +62,8 @@
 		8C259A902A1D0371003FC511 /* BB_taskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BB_taskUITests.swift; sourceTree = "<group>"; };
 		8C259A922A1D0371003FC511 /* BB_taskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BB_taskUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8C259AA02A1D06AC003FC511 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8C2684B82A1E3BF100572003 /* TrieNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrieNode.swift; sourceTree = "<group>"; };
+		8C2684BA2A1E3C0C00572003 /* Trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 		8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
 		8C6040402A1D0FF000709D7F /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		8C6040422A1D104A00709D7F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		8C259A9F2A1D069B003FC511 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8C2684B62A1E3B5B00572003 /* SearchingService */,
 				8C60404E2A1E1FEA00709D7F /* SortingService */,
 				8C259AA02A1D06AC003FC511 /* NetworkService.swift */,
 				8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */,
@@ -159,6 +164,23 @@
 				8C6040492A1DF8E000709D7F /* ResponseDecoder.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8C2684B62A1E3B5B00572003 /* SearchingService */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684B72A1E3BDF00572003 /* Trie */,
+			);
+			path = SearchingService;
+			sourceTree = "<group>";
+		};
+		8C2684B72A1E3BDF00572003 /* Trie */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684B82A1E3BF100572003 /* TrieNode.swift */,
+				8C2684BA2A1E3C0C00572003 /* Trie.swift */,
+			);
+			path = Trie;
 			sourceTree = "<group>";
 		};
 		8C6040462A1D194200709D7F /* Models */ = {
@@ -320,6 +342,7 @@
 				8C6040522A1E258500709D7F /* Sortable.swift in Sources */,
 				8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */,
 				8C259A742A1D036F003FC511 /* ViewController.swift in Sources */,
+				8C2684BB2A1E3C0C00572003 /* Trie.swift in Sources */,
 				8C259A702A1D036F003FC511 /* AppDelegate.swift in Sources */,
 				8C2024FA2A1E31720069E7A5 /* DutchFlagSorting.swift in Sources */,
 				8C259AA12A1D06AC003FC511 /* NetworkService.swift in Sources */,
@@ -328,6 +351,7 @@
 				8C60404D2A1DFEF100709D7F /* AppConfiguration.swift in Sources */,
 				8C259A722A1D036F003FC511 /* SceneDelegate.swift in Sources */,
 				8C60404A2A1DF8E000709D7F /* ResponseDecoder.swift in Sources */,
+				8C2684B92A1E3BF100572003 /* TrieNode.swift in Sources */,
 				8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
