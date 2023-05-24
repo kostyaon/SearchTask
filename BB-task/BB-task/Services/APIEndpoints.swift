@@ -9,9 +9,9 @@ import Foundation
 
 struct APIEndpoints {
     
-    static func getCities() -> Endpoint<CityResponse> {
-        return Endpoint(path: "",
+    static func getCities() -> Endpoint<[CityResponse]> {
+        return Endpoint(path: "BackbaseRecruitment/city-search-ios-kostyaon/main/cities.json",
                         method: .get,
-                        queryParameters: [:])
+                        queryParameters: ["token": AppConfiguration.APIKey])
     }
 }

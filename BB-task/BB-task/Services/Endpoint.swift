@@ -13,6 +13,7 @@ enum HTTPMethodType: String {
 }
 
 protocol Requestable {
+    
     var path: String { get }
     var isFullPath: Bool { get }
     var method: HTTPMethodType { get }
@@ -20,6 +21,12 @@ protocol Requestable {
     var queryParameters: [String: Any] { get }
     
     func urlRequest(with networkConfiguration: NetworkConfigurable) throws -> URLRequest
+}
+
+protocol ResponseRequestable: Requestable {
+    
+    associatedtype Response
+    var responseDecoder: ResponseDecoder { get }
 }
 
 extension Requestable {
@@ -54,7 +61,7 @@ extension Requestable {
     }
 }
 
-class Endpoint<T>: Requestable {
+class Endpoint<T>: ResponseRequestable {
     
     typealias Response = T
     
@@ -63,13 +70,15 @@ class Endpoint<T>: Requestable {
     let method: HTTPMethodType
     let headerParameters: [String: String]
     let queryParameters: [String: Any]
+    let responseDecoder: ResponseDecoder
     
-    init(path: String, isFullPath: Bool = false, method: HTTPMethodType, headerParameters: [String : String] = [:], queryParameters: [String : Any] = [:]) {
+    init(path: String, isFullPath: Bool = false, method: HTTPMethodType, headerParameters: [String : String] = [:], queryParameters: [String : Any] = [:], responseDecoder: ResponseDecoder = JSONResponseDecoder()) {
         self.path = path
         self.isFullPath = isFullPath
         self.method = method
         self.headerParameters = headerParameters
         self.queryParameters = queryParameters
+        self.responseDecoder = responseDecoder
     }
 }
 
