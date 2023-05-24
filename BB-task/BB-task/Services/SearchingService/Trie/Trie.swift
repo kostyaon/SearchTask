@@ -69,7 +69,7 @@ extension Trie where CollectionType: RangeReplaceableCollection {
 
 // Private
 private
-extension Trie {
+extension Trie where CollectionType: RangeReplaceableCollection {
     
     func collections(startingWith prefix: CollectionType, after node: Node) -> [CollectionType] {
         var results: [CollectionType] = []
