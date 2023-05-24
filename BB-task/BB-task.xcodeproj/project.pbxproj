@@ -21,6 +21,8 @@
 		8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040402A1D0FF000709D7F /* APIEndpoints.swift */; };
 		8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040422A1D104A00709D7F /* Endpoint.swift */; };
 		8C6040482A1D195400709D7F /* CityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040472A1D195400709D7F /* CityResponse.swift */; };
+		8C60404A2A1DF8E000709D7F /* ResponseDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040492A1DF8E000709D7F /* ResponseDecoder.swift */; };
+		8C60404D2A1DFEF100709D7F /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60404C2A1DFEF100709D7F /* AppConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		8C6040402A1D0FF000709D7F /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		8C6040422A1D104A00709D7F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		8C6040472A1D195400709D7F /* CityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityResponse.swift; sourceTree = "<group>"; };
+		8C6040492A1DF8E000709D7F /* ResponseDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDecoder.swift; sourceTree = "<group>"; };
+		8C60404C2A1DFEF100709D7F /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		8C259A6E2A1D036F003FC511 /* BB-task */ = {
 			isa = PBXGroup;
 			children = (
+				8C60404B2A1DFECA00709D7F /* Application */,
 				8C6040462A1D194200709D7F /* Models */,
 				8C259A9F2A1D069B003FC511 /* Services */,
 				8C259A6F2A1D036F003FC511 /* AppDelegate.swift */,
@@ -146,6 +151,7 @@
 				8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */,
 				8C6040402A1D0FF000709D7F /* APIEndpoints.swift */,
 				8C6040422A1D104A00709D7F /* Endpoint.swift */,
+				8C6040492A1DF8E000709D7F /* ResponseDecoder.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -156,6 +162,14 @@
 				8C6040472A1D195400709D7F /* CityResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8C60404B2A1DFECA00709D7F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8C60404C2A1DFEF100709D7F /* AppConfiguration.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,7 +309,9 @@
 				8C259AA12A1D06AC003FC511 /* NetworkService.swift in Sources */,
 				8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */,
 				8C6040482A1D195400709D7F /* CityResponse.swift in Sources */,
+				8C60404D2A1DFEF100709D7F /* AppConfiguration.swift in Sources */,
 				8C259A722A1D036F003FC511 /* SceneDelegate.swift in Sources */,
+				8C60404A2A1DF8E000709D7F /* ResponseDecoder.swift in Sources */,
 				8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +485,8 @@
 		8C259A972A1D0371003FC511 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://raw.githubusercontent.com/";
+				API_KEY = GHSAT0AAAAAACBWOY7QVOIFZL6M5YXEWI5MZDNZP4A;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -496,6 +514,8 @@
 		8C259A982A1D0371003FC511 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://raw.githubusercontent.com/";
+				API_KEY = GHSAT0AAAAAACBWOY7QVOIFZL6M5YXEWI5MZDNZP4A;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
