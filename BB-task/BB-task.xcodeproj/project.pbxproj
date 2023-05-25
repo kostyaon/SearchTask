@@ -22,6 +22,11 @@
 		8C2684BB2A1E3C0C00572003 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684BA2A1E3C0C00572003 /* Trie.swift */; };
 		8C2684BD2A1E3E9300572003 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684BC2A1E3E9300572003 /* Searchable.swift */; };
 		8C2684BF2A1E3F5100572003 /* TriePrefixSearching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684BE2A1E3F5100572003 /* TriePrefixSearching.swift */; };
+		8C2684C22A1E7B9100572003 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684C12A1E7B9100572003 /* SearchViewController.swift */; };
+		8C2684C42A1E7E2900572003 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2684C32A1E7E2900572003 /* SearchViewController.storyboard */; };
+		8C2684CB2A1F831C00572003 /* CitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684CA2A1F831C00572003 /* CitiesListViewModel.swift */; };
+		8C2684CD2A1F838C00572003 /* CitiesListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684CC2A1F838C00572003 /* CitiesListItemViewModel.swift */; };
+		8C2684D02A1F840000572003 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684CF2A1F840000572003 /* Observable.swift */; };
 		8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */; };
 		8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040402A1D0FF000709D7F /* APIEndpoints.swift */; };
 		8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040422A1D104A00709D7F /* Endpoint.swift */; };
@@ -68,6 +73,11 @@
 		8C2684BA2A1E3C0C00572003 /* Trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
 		8C2684BC2A1E3E9300572003 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
 		8C2684BE2A1E3F5100572003 /* TriePrefixSearching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriePrefixSearching.swift; sourceTree = "<group>"; };
+		8C2684C12A1E7B9100572003 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8C2684C32A1E7E2900572003 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
+		8C2684CA2A1F831C00572003 /* CitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModel.swift; sourceTree = "<group>"; };
+		8C2684CC2A1F838C00572003 /* CitiesListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListItemViewModel.swift; sourceTree = "<group>"; };
+		8C2684CF2A1F840000572003 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
 		8C6040402A1D0FF000709D7F /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		8C6040422A1D104A00709D7F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -125,6 +135,8 @@
 		8C259A6E2A1D036F003FC511 /* BB-task */ = {
 			isa = PBXGroup;
 			children = (
+				8C2684CE2A1F83F200572003 /* Utilities */,
+				8C2684C02A1E7B7300572003 /* Presentation */,
 				8C60404B2A1DFECA00709D7F /* Application */,
 				8C6040462A1D194200709D7F /* Models */,
 				8C259A9F2A1D069B003FC511 /* Services */,
@@ -187,6 +199,49 @@
 				8C2684BA2A1E3C0C00572003 /* Trie.swift */,
 			);
 			path = Trie;
+			sourceTree = "<group>";
+		};
+		8C2684C02A1E7B7300572003 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684C72A1F82A400572003 /* CitiesList */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8C2684C72A1F82A400572003 /* CitiesList */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684C92A1F82BF00572003 /* ViewModel */,
+				8C2684C82A1F82AE00572003 /* View */,
+			);
+			path = CitiesList;
+			sourceTree = "<group>";
+		};
+		8C2684C82A1F82AE00572003 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684C12A1E7B9100572003 /* SearchViewController.swift */,
+				8C2684C32A1E7E2900572003 /* SearchViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8C2684C92A1F82BF00572003 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684CA2A1F831C00572003 /* CitiesListViewModel.swift */,
+				8C2684CC2A1F838C00572003 /* CitiesListItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8C2684CE2A1F83F200572003 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8C2684CF2A1F840000572003 /* Observable.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		8C6040462A1D194200709D7F /* Models */ = {
@@ -321,6 +376,7 @@
 				8C259A7C2A1D0371003FC511 /* LaunchScreen.storyboard in Resources */,
 				8C259A792A1D0371003FC511 /* Assets.xcassets in Resources */,
 				8C259A772A1D036F003FC511 /* Main.storyboard in Resources */,
+				8C2684C42A1E7E2900572003 /* SearchViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +404,7 @@
 				8C6040522A1E258500709D7F /* Sortable.swift in Sources */,
 				8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */,
 				8C259A742A1D036F003FC511 /* ViewController.swift in Sources */,
+				8C2684C22A1E7B9100572003 /* SearchViewController.swift in Sources */,
 				8C2684BB2A1E3C0C00572003 /* Trie.swift in Sources */,
 				8C2684BD2A1E3E9300572003 /* Searchable.swift in Sources */,
 				8C259A702A1D036F003FC511 /* AppDelegate.swift in Sources */,
@@ -357,10 +414,13 @@
 				8C6040482A1D195400709D7F /* CityResponse.swift in Sources */,
 				8C2684BF2A1E3F5100572003 /* TriePrefixSearching.swift in Sources */,
 				8C60404D2A1DFEF100709D7F /* AppConfiguration.swift in Sources */,
+				8C2684CD2A1F838C00572003 /* CitiesListItemViewModel.swift in Sources */,
 				8C259A722A1D036F003FC511 /* SceneDelegate.swift in Sources */,
 				8C60404A2A1DF8E000709D7F /* ResponseDecoder.swift in Sources */,
+				8C2684D02A1F840000572003 /* Observable.swift in Sources */,
 				8C2684B92A1E3BF100572003 /* TrieNode.swift in Sources */,
 				8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */,
+				8C2684CB2A1F831C00572003 /* CitiesListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
