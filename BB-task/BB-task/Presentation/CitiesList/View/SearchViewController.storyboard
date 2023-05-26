@@ -1,25 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="BB_task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ys-Lck">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zH-gC-hef">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <connections>
+                                            <segue destination="DAH-DZ-adL" kind="embed" identifier="CitiesListTableViewController" id="oad-Dy-QLo"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="6zH-gC-hef" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="2JT-iO-Re2"/>
+                                    <constraint firstAttribute="bottom" secondItem="6zH-gC-hef" secondAttribute="bottom" id="Lpn-SF-Ndx"/>
+                                    <constraint firstAttribute="trailing" secondItem="6zH-gC-hef" secondAttribute="trailing" id="UNr-L7-OIB"/>
+                                    <constraint firstItem="6zH-gC-hef" firstAttribute="top" secondItem="K2v-Ys-Lck" secondAttribute="top" id="dTE-an-LFv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="K2v-Ys-Lck" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="61G-bk-nBe"/>
+                            <constraint firstItem="K2v-Ys-Lck" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="DaJ-pI-RCo"/>
+                            <constraint firstItem="K2v-Ys-Lck" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="XkD-1G-ntO"/>
+                            <constraint firstItem="K2v-Ys-Lck" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="z3U-xI-vQw"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="citiesListContainer" destination="K2v-Ys-Lck" id="ujG-NF-Mag"/>
+                        <outlet property="contentView" destination="5EZ-qb-Rvc" id="um1-1M-d02"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="341" y="81"/>
+        </scene>
+        <!--Cities List Table View Controller-->
+        <scene sceneID="Z0u-DH-Wkl">
+            <objects>
+                <viewController id="DAH-DZ-adL" customClass="CitiesListTableViewController" customModule="BB_task" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Z6A-rB-lpP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </tableView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwK-Av-Yeg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="81"/>
         </scene>
     </scenes>
     <resources>

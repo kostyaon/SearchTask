@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-final class CityListItemCell: UITableViewCell {
-    
-    static let reuseIdentifier = String(String(describing: CityListItemCell.self))
+final class CityListItemCell: UITableViewCell, CellNibable {
     
     // MARK: - Outlets
     @IBOutlet private weak var nameCountryLabel: UILabel!
@@ -18,13 +16,13 @@ final class CityListItemCell: UITableViewCell {
     @IBOutlet private weak var latitudeLabel: UILabel!
     
     // MARK: - Properties
-    private var viewModel: CitiesListItemViewModel
+    private var viewModel: CitiesListItemViewModel!
     
     // MARK: - Public method's
     func setupCell(with viewModel: CitiesListItemViewModel) {
         self.viewModel = viewModel
         
-        nameCountryLabel.text = "\(viewModel.name) \(viewModel.country)"
+        nameCountryLabel.text = "\(viewModel.name), \(viewModel.country)"
         longitudeLabel.text = "longitude: \(viewModel.coordinates.longitude)"
         latitudeLabel.text = "latitude: \(viewModel.coordinates.latitude)"
     }
