@@ -13,10 +13,20 @@ final class SearchViewController: UIViewController, Instantiatiable, Alertable {
     // MARK: - Outlets
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var citiesListContainer: UIView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var loadingStackView: UIStackView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var loadingButton: UIButton!
+    
+    // MARK: - Actions
+    @IBAction private func tryAgainTapped() {
+        viewModel.didTryAgainTapped()
+    }
     
     // MARK: - Properties
     private var citiesTableViewController: CitiesListTableViewController?
     private var viewModel: CitiesListViewModel!
+    private var searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Lifecycle method's
     static func create(with viewModel: CitiesListViewModel) -> SearchViewController {
@@ -30,6 +40,7 @@ final class SearchViewController: UIViewController, Instantiatiable, Alertable {
         
         setupViews()
         bind(to: viewModel)
+        setupSearchController()
         self.viewModel.viewDidLoad()
     }
     
@@ -54,6 +65,7 @@ extension SearchViewController {
     
     func setupViews() {
         self.title = viewModel.controllerTitle
+        activityIndicator.hidesWhenStopped = true
     }
     
     func bind(to viewModel: CitiesListViewModel) {
@@ -65,14 +77,66 @@ extension SearchViewController {
             guard let self else { return }
             self.showError(error)
         }
+        viewModel.loading.observe(on: self) { [weak self] isLoad in 
+            guard let self else { return }
+            switch isLoad {
+            case .fail:
+                self.failLoading()
+            case .done:
+                self.successLoading()
+            case .loading:
+                self.loadingInProgress()
+            }
+        }
+        viewModel.searchBarPlaceholder.observe(on: self) { [weak self] placeholderText in
+            guard let self else { return }
+            self.searchBar.placeholder = placeholderText
+        }
     }
     
     func updateItems() {
         citiesTableViewController?.reload()
     }
     
+    func loadingInProgress() {
+        activityIndicator.startAnimating()
+        loadingButton.isHidden = true
+    }
+    
+    func successLoading() {
+        activityIndicator.stopAnimating()
+        searchBar.isUserInteractionEnabled = true
+    }
+    
+    func failLoading() {
+        activityIndicator.stopAnimating()
+        searchBar.isUserInteractionEnabled = false
+    }
+    
     func showError(_ error: String) {
         guard !error.isEmpty else { return }
         showAlert(title: viewModel.errorTitle, message: error)
+        
+        loadingButton.isHidden = false
+    }
+}
+
+// MARK: - SearchController
+private
+extension SearchViewController {
+    
+    func setupSearchController() {
+        searchController.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        searchBar.delegate = self
+    }
+}
+
+extension SearchViewController: UISearchControllerDelegate, UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+        viewModel.didSearch(query: searchText)
     }
 }

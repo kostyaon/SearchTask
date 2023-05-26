@@ -19,19 +19,47 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ys-Lck">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="seR-de-omV">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="mju-Nz-yWY"/>
+                                        </connections>
+                                    </searchBar>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zH-gC-hef">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
                                         <connections>
                                             <segue destination="DAH-DZ-adL" kind="embed" identifier="CitiesListTableViewController" id="oad-Dy-QLo"/>
                                         </connections>
                                     </containerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YM9-wX-IjZ">
+                                        <rect key="frame" x="50" y="344" width="293" height="71.333333333333314"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="M61-4D-gpd">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="37"/>
+                                            </activityIndicatorView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5n-nI-RR9">
+                                                <rect key="frame" x="0.0" y="37" width="293" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Try again"/>
+                                                <connections>
+                                                    <action selector="tryAgainTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qu2-sg-mLq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="6zH-gC-hef" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="2JT-iO-Re2"/>
+                                    <constraint firstAttribute="trailing" secondItem="seR-de-omV" secondAttribute="trailing" id="44J-e0-XFa"/>
+                                    <constraint firstItem="6zH-gC-hef" firstAttribute="top" secondItem="seR-de-omV" secondAttribute="bottom" id="4F6-9f-GET"/>
+                                    <constraint firstItem="seR-de-omV" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="K8C-iw-AHa"/>
                                     <constraint firstAttribute="bottom" secondItem="6zH-gC-hef" secondAttribute="bottom" id="Lpn-SF-Ndx"/>
+                                    <constraint firstAttribute="trailing" secondItem="YM9-wX-IjZ" secondAttribute="trailing" constant="50" id="P29-Pa-bEm"/>
                                     <constraint firstAttribute="trailing" secondItem="6zH-gC-hef" secondAttribute="trailing" id="UNr-L7-OIB"/>
-                                    <constraint firstItem="6zH-gC-hef" firstAttribute="top" secondItem="K2v-Ys-Lck" secondAttribute="top" id="dTE-an-LFv"/>
+                                    <constraint firstItem="seR-de-omV" firstAttribute="top" secondItem="K2v-Ys-Lck" secondAttribute="top" id="m4v-4m-uD1"/>
+                                    <constraint firstItem="YM9-wX-IjZ" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" constant="50" id="mRs-Ls-lEy"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -39,14 +67,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="K2v-Ys-Lck" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="61G-bk-nBe"/>
+                            <constraint firstItem="YM9-wX-IjZ" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="8fa-ex-JzZ"/>
                             <constraint firstItem="K2v-Ys-Lck" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="DaJ-pI-RCo"/>
+                            <constraint firstItem="YM9-wX-IjZ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Fzu-gi-9Cz"/>
                             <constraint firstItem="K2v-Ys-Lck" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="XkD-1G-ntO"/>
                             <constraint firstItem="K2v-Ys-Lck" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="z3U-xI-vQw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="M61-4D-gpd" id="wqc-HY-M4H"/>
                         <outlet property="citiesListContainer" destination="K2v-Ys-Lck" id="ujG-NF-Mag"/>
                         <outlet property="contentView" destination="5EZ-qb-Rvc" id="um1-1M-d02"/>
+                        <outlet property="loadingButton" destination="J5n-nI-RR9" id="Hoe-Di-1eZ"/>
+                        <outlet property="loadingStackView" destination="YM9-wX-IjZ" id="aQI-Y5-11r"/>
+                        <outlet property="searchBar" destination="seR-de-omV" id="5zC-E1-W6l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -58,7 +92,7 @@
             <objects>
                 <viewController id="DAH-DZ-adL" customClass="CitiesListTableViewController" customModule="BB_task" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Z6A-rB-lpP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="703"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </tableView>
