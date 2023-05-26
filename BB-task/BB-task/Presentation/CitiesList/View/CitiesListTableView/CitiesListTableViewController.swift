@@ -23,6 +23,13 @@ final class CitiesListTableViewController: UITableViewController {
     func reload() {
         tableView.reloadData()
     }
+    
+    func scrollToTheTop() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        if viewModel.items.value.count > 0 {
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+    }
 }
 
 // MARK: - Private

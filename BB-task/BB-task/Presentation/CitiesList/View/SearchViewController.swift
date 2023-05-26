@@ -16,6 +16,7 @@ final class SearchViewController: UIViewController, Instantiatiable, Alertable {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingStackView: UIStackView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var searchBarActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var loadingButton: UIButton!
     
     // MARK: - Actions
@@ -66,6 +67,7 @@ extension SearchViewController {
     func setupViews() {
         self.title = viewModel.controllerTitle
         activityIndicator.hidesWhenStopped = true
+        searchBarActivityIndicator.hidesWhenStopped = true
     }
     
     func bind(to viewModel: CitiesListViewModel) {
@@ -91,6 +93,16 @@ extension SearchViewController {
         viewModel.searchBarPlaceholder.observe(on: self) { [weak self] placeholderText in
             guard let self else { return }
             self.searchBar.placeholder = placeholderText
+        }
+        viewModel.searchLoading.observe(on: self) { [weak self] isLoad in
+            guard let self else { return }
+            switch isLoad {
+            case .loading:
+                self.searchBarActivityIndicator.startAnimating()
+            case .done, .fail:
+                self.searchBarActivityIndicator.stopAnimating()
+                self.citiesTableViewController?.scrollToTheTop()
+            }
         }
     }
     
@@ -136,7 +148,14 @@ extension SearchViewController {
 extension SearchViewController: UISearchControllerDelegate, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText \(searchText)")
+        guard !searchText.isEmpty else {
+            viewModel.showSortableList()
+            return
+        }
         viewModel.didSearch(query: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

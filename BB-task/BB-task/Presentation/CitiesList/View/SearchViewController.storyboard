@@ -19,15 +19,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ys-Lck">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="seR-de-omV">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="mju-Nz-yWY"/>
-                                        </connections>
-                                    </searchBar>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cEM-bk-Kpd">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="76"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="seR-de-omV">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="mju-Nz-yWY"/>
+                                                </connections>
+                                            </searchBar>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="H4E-w6-69b">
+                                                <rect key="frame" x="0.0" y="56" width="393" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                    </stackView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zH-gC-hef">
-                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                                        <rect key="frame" x="0.0" y="76" width="393" height="683"/>
                                         <connections>
                                             <segue destination="DAH-DZ-adL" kind="embed" identifier="CitiesListTableViewController" id="oad-Dy-QLo"/>
                                         </connections>
@@ -52,14 +60,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="6zH-gC-hef" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="2JT-iO-Re2"/>
-                                    <constraint firstAttribute="trailing" secondItem="seR-de-omV" secondAttribute="trailing" id="44J-e0-XFa"/>
-                                    <constraint firstItem="6zH-gC-hef" firstAttribute="top" secondItem="seR-de-omV" secondAttribute="bottom" id="4F6-9f-GET"/>
-                                    <constraint firstItem="seR-de-omV" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="K8C-iw-AHa"/>
                                     <constraint firstAttribute="bottom" secondItem="6zH-gC-hef" secondAttribute="bottom" id="Lpn-SF-Ndx"/>
+                                    <constraint firstItem="cEM-bk-Kpd" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" id="Lvl-Ez-RQP"/>
                                     <constraint firstAttribute="trailing" secondItem="YM9-wX-IjZ" secondAttribute="trailing" constant="50" id="P29-Pa-bEm"/>
+                                    <constraint firstItem="cEM-bk-Kpd" firstAttribute="top" secondItem="K2v-Ys-Lck" secondAttribute="top" id="QaO-Ng-E6y"/>
                                     <constraint firstAttribute="trailing" secondItem="6zH-gC-hef" secondAttribute="trailing" id="UNr-L7-OIB"/>
-                                    <constraint firstItem="seR-de-omV" firstAttribute="top" secondItem="K2v-Ys-Lck" secondAttribute="top" id="m4v-4m-uD1"/>
+                                    <constraint firstAttribute="trailing" secondItem="cEM-bk-Kpd" secondAttribute="trailing" id="dgR-Eg-iQa"/>
                                     <constraint firstItem="YM9-wX-IjZ" firstAttribute="leading" secondItem="K2v-Ys-Lck" secondAttribute="leading" constant="50" id="mRs-Ls-lEy"/>
+                                    <constraint firstItem="6zH-gC-hef" firstAttribute="top" secondItem="cEM-bk-Kpd" secondAttribute="bottom" id="u9a-Id-QtM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -81,6 +89,7 @@
                         <outlet property="loadingButton" destination="J5n-nI-RR9" id="Hoe-Di-1eZ"/>
                         <outlet property="loadingStackView" destination="YM9-wX-IjZ" id="aQI-Y5-11r"/>
                         <outlet property="searchBar" destination="seR-de-omV" id="5zC-E1-W6l"/>
+                        <outlet property="searchBarActivityIndicator" destination="H4E-w6-69b" id="Mre-C5-NUh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

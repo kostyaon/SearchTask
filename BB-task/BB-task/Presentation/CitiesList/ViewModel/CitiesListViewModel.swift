@@ -24,6 +24,7 @@ protocol CitiesListViewModelInput {
     func viewDidLoad()
     func didSelectItem(at index: Int)
     func didSearch(query: String)
+    func showSortableList()
     func didTryAgainTapped()
 }
 
@@ -31,6 +32,7 @@ protocol CitiesListViewModelOutput {
     
     var items: Observable<[CitiesListItemViewModel]> { get }
     var loading: Observable<CitiesListLoading> { get }
+    var searchLoading: Observable<CitiesListLoading> { get }
     var error: Observable<String> { get }
     var searchBarPlaceholder: Observable<String> { get }
     var errorTitle: String { get }
@@ -46,11 +48,13 @@ final class DefaultCitiesListViewModel<Sort: Sortable, Search: Searchable>: Citi
     private var searchingService: Search
     private let actions: CitiesListViewModelActions?
     
+    private var sortableListViewModel: [CitiesListItemViewModel] = []
     private var citiesDictionary = Dictionary<Int, CityResponse>()
     
     // MARK: - Output
     let items: Observable<[CitiesListItemViewModel]> = Observable([])
     let loading: Observable<CitiesListLoading> = Observable(CitiesListLoading.fail)
+    var searchLoading: Observable<CitiesListLoading> = Observable(CitiesListLoading.fail)
     let error: Observable<String> = Observable("")
     let errorTitle = "Oops, error!"
     let controllerTitle = "Cities"
@@ -78,12 +82,21 @@ extension DefaultCitiesListViewModel {
     
     func didSearch(query: String) {
         guard !query.isEmpty else { return }
-        let citiesIds = searchForCitiesIds(prefix: query)
-        updateItems(with: citiesIds)
+        self.searchLoading.value = .loading
+        
+        let utilityQueue = DispatchQueue(label: "com.bb-task", qos: .utility)
+        utilityQueue.async {
+            let citiesIds = self.searchForCitiesIds(prefix: query)
+            self.updateItems(with: citiesIds)
+        }
     }
     
     func didTryAgainTapped() {
         fetchCities(loading: true)
+    }
+    
+    func showSortableList() {
+        self.items.value = self.sortableListViewModel
     }
 }
 
@@ -109,7 +122,12 @@ extension DefaultCitiesListViewModel {
                 updatingItems.append(CitiesListItemViewModel.init(city: city))
             }
         }
-        self.items.value = updatingItems
+        
+        DispatchQueue.main.async {
+            self.items.value = updatingItems
+            self.searchLoading.value = .done
+        }
+        
     }
     
     func fetchCities(loading: Bool) {
@@ -119,7 +137,8 @@ extension DefaultCitiesListViewModel {
             switch result {
             case .success(var cities):
                 self.sortingService.sortAscending(&cities)
-                self.items.value = cities.map(CitiesListItemViewModel.init)
+                self.sortableListViewModel = cities.map(CitiesListItemViewModel.init)
+                self.items.value = self.sortableListViewModel
                 self.citiesDictionary = [:]
                 self.searchBarPlaceholder.value = "Search city"
                 self.loading.value = .done
