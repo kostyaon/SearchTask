@@ -7,14 +7,22 @@
 
 import Foundation
 
-class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
+class Trie<CollectionType: Collection & Hashable> where CollectionType.Element: Hashable {
     
     typealias Node = TrieNode<CollectionType.Element>
     
     let root = Node(key: nil, parent: nil)
     
+    public private(set) var collections: Set<CollectionType> = []
+    
+    public var isEmpty: Bool {
+        collections.isEmpty
+    }
+    
     init() {}
     
+    
+    // MARK: - Public method's
     func insert(_ collection: CollectionType, id: Int) {
         var current = root
         
@@ -25,8 +33,15 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
             current = current.children[element]!
         }
         
-        current.isTerminating = true
-        current.nodeIDs.append(id)
+        if current.isTerminating {
+            return
+        } else {
+            current.isTerminating = true
+            current.nodeIDs.append(id)
+            collections.insert(collection)
+        }
+       
+        
     }
     
     func contains(_ collection: CollectionType) -> Bool {
@@ -49,6 +64,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
         guard current.isTerminating else { return }
         current.isTerminating = false
         current.nodeIDs = []
+        collections.remove(collection)
         while let parent = current.parent, current.children.isEmpty && !current.isTerminating {
             parent.children[current.key!] = nil
             current = parent
@@ -56,7 +72,7 @@ class Trie<CollectionType: Collection> where CollectionType.Element: Hashable {
     }
 }
 
-// Prefix matching
+// MARK: - Prefix matching
 extension Trie where CollectionType: RangeReplaceableCollection {
     
     func collections(startingWith prefix: CollectionType) -> [Int] {
@@ -69,7 +85,7 @@ extension Trie where CollectionType: RangeReplaceableCollection {
     }
 }
 
-// Private
+// MARK: - Private
 private
 extension Trie where CollectionType: RangeReplaceableCollection {
     

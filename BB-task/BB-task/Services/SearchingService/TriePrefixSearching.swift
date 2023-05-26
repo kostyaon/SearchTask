@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct TriePrefixSearching<T: Collection>: Searchable where T: RangeReplaceableCollection, T.Element: Hashable {
-
-    private let collection: [(T, Int)]
-    private var trie = Trie<T>()
+struct TriePrefixSearching: Searchable {
     
-    init(_ collection: [(T, Int)]) {
-        self.collection = collection
-        self.createTrie()
-    }
+    private var trie = Trie<String>()
     
-    func searchFor(prefix: T) -> [Int] {
+    init() { }
+    
+    mutating func searchFor(prefix: String, in dictionary: Dictionary<Int, String>) -> [Int] {
+        if trie.isEmpty {
+            createTrie(from: dictionary)
+        }
+        
         return trie.collections(startingWith: prefix)
     }
 }
@@ -25,9 +25,9 @@ struct TriePrefixSearching<T: Collection>: Searchable where T: RangeReplaceableC
 private
 extension TriePrefixSearching {
     
-    func createTrie() {
-        for element in collection {
-            trie.insert(element.0, id: element.1)
+    func createTrie(from dictionary: Dictionary<Int, String>)  {
+        dictionary.forEach {
+            trie.insert($0.value, id: $0.key)
         }
     }
 }

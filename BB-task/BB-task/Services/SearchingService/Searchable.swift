@@ -9,7 +9,5 @@ import Foundation
 
 protocol Searchable {
     
-    associatedtype T: Collection
-    
-    func searchFor(prefix: T) -> [Int]
+    mutating func searchFor(prefix: String, in dictionary: Dictionary<Int, String>) -> [Int]
 }
