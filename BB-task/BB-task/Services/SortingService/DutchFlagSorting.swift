@@ -11,7 +11,7 @@ struct DutchFlagSorting<T: Comparable>: Sortable {
     
     init() {}
     
-    func sortAscending(_ array: inout [String]) {
+    func sortAscending(_ array: inout [T]) {
         sortDutchFlag(&array, low: 0, high: array.count - 1)
     }
 }

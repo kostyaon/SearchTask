@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Coordinate: Decodable {
+struct Coordinate: Decodable, Equatable {
     
     let longitude: Double
     let latitude: Double
@@ -34,5 +34,16 @@ struct CityResponse: Decodable {
         case name
         case id = "_id"
         case coordinates = "coord"
+    }
+}
+
+extension CityResponse: Comparable {
+    
+    static func < (lhs: CityResponse, rhs: CityResponse) -> Bool {
+        lhs.name < rhs.name
+    }
+    
+    static func == (lhs: CityResponse, rhs: CityResponse) -> Bool {
+        lhs.name == rhs.name && lhs.country == rhs.country && lhs.coordinates == rhs.coordinates
     }
 }

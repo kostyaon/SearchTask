@@ -23,6 +23,8 @@ protocol CitiesListViewModelOutput {
     var items: Observable<[CitiesListItemViewModel]> { get }
     var loading: Observable<Bool> { get }
     var error: Observable<String> { get }
+    var errorTitle: String { get }
+    var controllerTitle: String { get }
 }
 
 typealias CitiesListViewModel = CitiesListViewModelInput & CitiesListViewModelOutput
@@ -36,6 +38,8 @@ final class DefaultCitiesListViewModel: CitiesListViewModel {
     let items: Observable<[CitiesListItemViewModel]> = Observable([])
     let loading: Observable<Bool> = Observable(false)
     let error: Observable<String> = Observable("")
+    let errorTitle = "Oops, error!"
+    let controllerTitle = "Cities"
     
     // Init
     init(networkService: NetworkService, actions: CitiesListViewModelActions? = nil) {
@@ -65,7 +69,9 @@ extension DefaultCitiesListViewModel {
         networkService.request(with: APIEndpoints.getCities()) { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success(let cities):
+            case .success(var cities):
+                let sortingService = DutchFlagSorting<CityResponse>()
+                sortingService.sortAscending(&cities)
                 self.items.value = cities.map(CitiesListItemViewModel.init)
             case .failure(let error):
                 self.handleError(error: error)
