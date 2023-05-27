@@ -41,11 +41,11 @@ protocol CitiesListViewModelOutput {
 
 typealias CitiesListViewModel = CitiesListViewModelInput & CitiesListViewModelOutput
 
-final class DefaultCitiesListViewModel<Sort: Sortable, Search: Searchable>: CitiesListViewModel where Sort.T == CityResponse {
+final class DefaultCitiesListViewModel: CitiesListViewModel {
     
     private let networkService: NetworkService
-    private let sortingService: Sort
-    private var searchingService: Search
+    private let sortingService: AnySortable<CityResponse>
+    private var searchingService: Searchable
     private let actions: CitiesListViewModelActions?
     
     private var sortableListViewModel: [CitiesListItemViewModel] = []
@@ -61,7 +61,7 @@ final class DefaultCitiesListViewModel<Sort: Sortable, Search: Searchable>: Citi
     var searchBarPlaceholder: Observable<String> = Observable("There is nothing to search")
     
     // Init
-    init(networkService: NetworkService, sortingService: Sort, searchingService: Search, actions: CitiesListViewModelActions? = nil) {
+    init(networkService: NetworkService, sortingService: AnySortable<CityResponse>, searchingService: Searchable, actions: CitiesListViewModelActions? = nil) {
         self.networkService = networkService
         self.sortingService = sortingService
         self.searchingService = searchingService

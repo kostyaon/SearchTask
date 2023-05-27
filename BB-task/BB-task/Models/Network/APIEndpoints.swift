@@ -11,7 +11,6 @@ struct APIEndpoints {
     
     static func getCities() -> Endpoint<[CityResponse]> {
         return Endpoint(path: "BackbaseRecruitment/city-search-ios-kostyaon/main/cities.json",
-                        method: .get,
-                        headerParameters: ["Authorization": "Token \(AppConfiguration.APIKey)"])
+                        method: .get)
     }
 }
