@@ -9,7 +9,7 @@ import Foundation
 
 struct CitiesListViewModelActions {
     
-    let showCityOnMap: (Coordinate) -> Void
+    let showCityOnMap: (CitiesListItemViewModel) -> Void
 }
 
 enum CitiesListLoading {
@@ -77,7 +77,7 @@ extension DefaultCitiesListViewModel {
     }
     
     func didSelectItem(at index: Int) {
-        actions?.showCityOnMap(items.value[index].coordinates)
+        actions?.showCityOnMap(items.value[index])
     }
     
     func didSearch(query: String) {

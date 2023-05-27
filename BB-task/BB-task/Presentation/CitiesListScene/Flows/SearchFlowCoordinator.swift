@@ -11,7 +11,7 @@ import UIKit
 protocol SearchFlowCoordinatorDependencies {
     
     func makeSearchListViewController(actions: CitiesListViewModelActions) -> SearchViewController
-    func makeCityMapViewController(coordinate: Coordinate) -> UIViewController
+    func makeCityMapViewController(viewModel: CitiesListItemViewModel) -> CityMapViewController
 }
 
 final class SearchFlowCoordinator {
@@ -40,8 +40,8 @@ final class SearchFlowCoordinator {
 private
 extension SearchFlowCoordinator {
     
-    func showCityOnMap(coordinate: Coordinate) {
-        let mapViewControlelr = dependencies.makeCityMapViewController(coordinate: coordinate)
+    func showCityOnMap(viewModel: CitiesListItemViewModel) {
+        let mapViewControlelr = dependencies.makeCityMapViewController(viewModel: viewModel)
         navigationController?.pushViewController(mapViewControlelr, animated: true)
     }
 }

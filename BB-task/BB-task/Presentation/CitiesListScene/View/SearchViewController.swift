@@ -11,7 +11,7 @@ import UIKit
 final class SearchViewController: UIViewController, Instantiatiable, Alertable {
     
     // MARK: - Outlets
-    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var citiesListContainer: UIView!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingStackView: UIStackView!
@@ -43,12 +43,6 @@ final class SearchViewController: UIViewController, Instantiatiable, Alertable {
         bind(to: viewModel)
         setupSearchController()
         self.viewModel.viewDidLoad()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

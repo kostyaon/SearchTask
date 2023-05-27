@@ -33,8 +33,8 @@ final class SearchSceneContainer: SearchFlowCoordinatorDependencies {
     }
     
     // MARK: - CityMapViewController
-    func makeCityMapViewController(coordinate: Coordinate) -> UIViewController {
-        return UIViewController()
+    func makeCityMapViewController(viewModel: CitiesListItemViewModel) -> CityMapViewController {
+        CityMapViewController.create(with: viewModel)
     }
     
     // MARK: - Flow coordinators
