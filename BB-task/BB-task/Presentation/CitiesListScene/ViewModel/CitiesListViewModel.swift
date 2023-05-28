@@ -147,7 +147,7 @@ extension DefaultCitiesListViewModel {
             service.createTrie(from: self.createSearchDictionary()) { [weak self] in
                 // The tree has been created
                 guard let self else { return }
-                self.createSearchTask(query: self.currentQuery) {
+                self.createSearchTask() {
                     self.isSearch = true
                 }
             }

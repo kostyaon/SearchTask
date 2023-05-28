@@ -76,6 +76,7 @@ class Trie<CollectionType: Collection & Hashable> where CollectionType.Element: 
 extension Trie where CollectionType: RangeReplaceableCollection {
     
     func collections(startingWith prefix: CollectionType) -> [Int] {
+        guard !prefix.isEmpty else { return [] }
         var current = root
         for element in prefix {
             guard let child = current.children[element] else { return [] }

@@ -21,7 +21,6 @@ struct TriePrefixSearching: Searchable {
         trie.isEmpty
     }
     
-    // Param: searchDictionary
     func createTrie(from dictionary: Dictionary<Int, String>, completion: @escaping () -> ())  {
         dictionary.forEach {
             trie.insert($0.value, id: $0.key)
