@@ -36,6 +36,7 @@
 		8C2684EA2A220CA100572003 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684E92A220CA100572003 /* AppContainer.swift */; };
 		8C2684F02A22425300572003 /* CityMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684EF2A22425300572003 /* CityMapViewController.swift */; };
 		8C2684F22A22426F00572003 /* CityMapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2684F12A22426F00572003 /* CityMapViewController.storyboard */; };
+		8C2684FA2A22692C00572003 /* SearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2684F92A22692C00572003 /* SearchOperation.swift */; };
 		8C60403F2A1D0DF500709D7F /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */; };
 		8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040402A1D0FF000709D7F /* APIEndpoints.swift */; };
 		8C6040432A1D104A00709D7F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6040422A1D104A00709D7F /* Endpoint.swift */; };
@@ -96,6 +97,7 @@
 		8C2684E92A220CA100572003 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		8C2684EF2A22425300572003 /* CityMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMapViewController.swift; sourceTree = "<group>"; };
 		8C2684F12A22426F00572003 /* CityMapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CityMapViewController.storyboard; sourceTree = "<group>"; };
+		8C2684F92A22692C00572003 /* SearchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOperation.swift; sourceTree = "<group>"; };
 		8C60403E2A1D0DF500709D7F /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
 		8C6040402A1D0FF000709D7F /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		8C6040422A1D104A00709D7F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				8C2684B72A1E3BDF00572003 /* Trie */,
 				8C2684BC2A1E3E9300572003 /* Searchable.swift */,
 				8C2684BE2A1E3F5100572003 /* TriePrefixSearching.swift */,
+				8C2684F92A22692C00572003 /* SearchOperation.swift */,
 			);
 			path = SearchingService;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				8C2684EA2A220CA100572003 /* AppContainer.swift in Sources */,
 				8C2024FA2A1E31720069E7A5 /* DutchFlagSorting.swift in Sources */,
 				8C259AA12A1D06AC003FC511 /* NetworkService.swift in Sources */,
+				8C2684FA2A22692C00572003 /* SearchOperation.swift in Sources */,
 				8C2684D82A1F9D2100572003 /* CityListItemCell.swift in Sources */,
 				8C6040412A1D0FF000709D7F /* APIEndpoints.swift in Sources */,
 				8C2684E82A2209D900572003 /* SearchSceneContainer.swift in Sources */,

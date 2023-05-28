@@ -9,25 +9,23 @@ import Foundation
 
 struct TriePrefixSearching: Searchable {
     
-    private var trie = Trie<String>()
+    private let trie = Trie<String>()
     
     init() { }
     
-    mutating func searchFor(prefix: String, in dictionary: Dictionary<Int, String>) -> [Int] {
-        if trie.isEmpty {
-            createTrie(from: dictionary)
-        }
-        
+    func searchFor(prefix: String) -> [Int] {
         return trie.collections(startingWith: prefix)
     }
-}
-
-private
-extension TriePrefixSearching {
     
-    func createTrie(from dictionary: Dictionary<Int, String>)  {
+    func isEmpty() -> Bool {
+        trie.isEmpty
+    }
+    
+    // Param: searchDictionary
+    func createTrie(from dictionary: Dictionary<Int, String>, completion: @escaping () -> ())  {
         dictionary.forEach {
             trie.insert($0.value, id: $0.key)
         }
+        completion()
     }
 }

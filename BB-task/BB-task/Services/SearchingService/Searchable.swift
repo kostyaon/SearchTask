@@ -9,5 +9,5 @@ import Foundation
 
 protocol Searchable {
     
-    mutating func searchFor(prefix: String, in dictionary: Dictionary<Int, String>) -> [Int]
+    func searchFor(prefix: String) -> [Int]
 }

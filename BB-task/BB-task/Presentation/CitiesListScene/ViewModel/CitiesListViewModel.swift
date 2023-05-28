@@ -51,6 +51,15 @@ final class DefaultCitiesListViewModel: CitiesListViewModel {
     private var sortableListViewModel: [CitiesListItemViewModel] = []
     private var citiesDictionary = Dictionary<Int, CityResponse>()
     
+    
+    private let utilityQueue = DispatchQueue(label: "com.bb-task.utility", qos: .utility)
+    
+    private var isTrieCreated: Bool = false
+    private var isSearch: Bool = false
+    private var currentQuery: String = ""
+    
+    private var currentOperation: SearchOperation?
+    
     // MARK: - Output
     let items: Observable<[CitiesListItemViewModel]> = Observable([])
     let loading: Observable<CitiesListLoading> = Observable(CitiesListLoading.fail)
@@ -82,12 +91,20 @@ extension DefaultCitiesListViewModel {
     
     func didSearch(query: String) {
         guard !query.isEmpty else { return }
+        self.currentQuery = query
         self.searchLoading.value = .loading
         
-        let utilityQueue = DispatchQueue(label: "com.bb-task", qos: .utility)
-        utilityQueue.async {
-            let citiesIds = self.searchForCitiesIds(prefix: query)
-            self.updateItems(with: citiesIds)
+        if !isTrieCreated {
+            isTrieCreated = true
+            utilityQueue.async {
+                self.createTrie()
+            }
+        }
+        
+        if isSearch {
+            utilityQueue.async {
+                self.performSearch()
+            }
         }
     }
     
@@ -96,7 +113,11 @@ extension DefaultCitiesListViewModel {
     }
     
     func showSortableList() {
-        self.items.value = self.sortableListViewModel
+        self.currentQuery = ""
+        DispatchQueue.main.async {
+            self.items.value = self.sortableListViewModel
+            self.searchLoading.value = .done
+        }
     }
 }
 
@@ -104,7 +125,36 @@ extension DefaultCitiesListViewModel {
 private
 extension DefaultCitiesListViewModel {
     
-    func searchForCitiesIds(prefix: String) -> [Int] {
+    func performSearch() {
+        self.createSearchTask(completion: nil)
+    }
+    
+    func createSearchTask(completion: (() -> ())?) {
+        let searchOperation = SearchOperation(searchString: currentQuery, searchService: self.searchingService)
+        let completionBlock = {
+            DispatchQueue.main.async {
+                self.updateItems(with: searchOperation.searchedIDs)
+            }
+            completion?()
+        }
+        searchOperation.completionBlock = completionBlock
+        self.currentOperation = searchOperation
+        self.currentOperation?.start()
+    }
+    
+    func createTrie() {
+        if let service = self.searchingService as? TriePrefixSearching {
+            service.createTrie(from: self.createSearchDictionary()) { [weak self] in
+                // The tree has been created
+                guard let self else { return }
+                self.createSearchTask(query: self.currentQuery) {
+                    self.isSearch = true
+                }
+            }
+        }
+    }
+    
+    func createSearchDictionary() -> [Int: String] {
         var searchDictionary: [Int: String] = [:]
         if citiesDictionary.isEmpty {
             items.value.forEach {
@@ -112,22 +162,23 @@ extension DefaultCitiesListViewModel {
                 searchDictionary[$0.id] = $0.name
             }
         }
-        return searchingService.searchFor(prefix: prefix, in: searchDictionary)
+        return searchDictionary
     }
     
     func updateItems(with ids: [Int]) {
+        if currentQuery.isEmpty {
+            showSortableList()
+            return
+        }
+        
         var updatingItems: [CitiesListItemViewModel] = []
         for id in ids {
             if let city = citiesDictionary[id] {
                 updatingItems.append(CitiesListItemViewModel.init(city: city))
             }
         }
-        
-        DispatchQueue.main.async {
-            self.items.value = updatingItems
-            self.searchLoading.value = .done
-        }
-        
+        self.items.value = updatingItems
+        self.searchLoading.value = .done
     }
     
     func fetchCities(loading: Bool) {

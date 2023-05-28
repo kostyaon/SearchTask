@@ -19,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKb-FN-aOW">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CKb-FN-aOW" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Ckz-Xo-GYK"/>
-                            <constraint firstItem="CKb-FN-aOW" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="H1E-EN-swy"/>
+                            <constraint firstItem="CKb-FN-aOW" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="Ckz-Xo-GYK"/>
+                            <constraint firstItem="CKb-FN-aOW" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="H1E-EN-swy"/>
                             <constraint firstItem="CKb-FN-aOW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="SX7-3G-IPA"/>
-                            <constraint firstItem="CKb-FN-aOW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="WWe-bl-m2C"/>
+                            <constraint firstItem="CKb-FN-aOW" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="WWe-bl-m2C"/>
                         </constraints>
                     </view>
                     <connections>
