@@ -40,7 +40,6 @@ class TriePrefixSearchingTests: XCTestCase {
         
         trieSearchingService.createTrie(from: dictionary) {
             let emptyResults = self.trieSearchingService.searchFor(prefix: "")
-            print(emptyResults)
             XCTAssertTrue(emptyResults.isEmpty, "Results should be empty for an empty prefix")
             
             let results = self.trieSearchingService.searchFor(prefix: "W")
