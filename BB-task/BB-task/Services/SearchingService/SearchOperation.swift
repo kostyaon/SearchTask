@@ -11,8 +11,7 @@ final class SearchOperation: Operation {
     
     var searchedIDs: [Int] = []
     
-    // ADD PRIVATE
-     let searchString: String
+    private let searchString: String
     private let searchService: Searchable
     
     init(searchString: String, searchService: Searchable) {
